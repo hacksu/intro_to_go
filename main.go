@@ -17,6 +17,7 @@ func main() {
 	fmt.Println("Welcome to the store!")
 	fmt.Println("Options:")
 	fmt.Println("(i)nventory")
+	fmt.Println("(b)uy item")
 	fmt.Println("(a)dd item")
 	fmt.Println("(q)uit")
 
@@ -31,6 +32,25 @@ func main() {
 				fmt.Println("cost:", p.cost)
 				fmt.Println()
 			}
+			break
+		case "b":
+			var toBuy string
+			fmt.Print("What product would you like to buy? ")
+			fmt.Scanln(&toBuy)
+
+			loc := -1
+			for i, p := range inventory {
+				if p.name == toBuy {
+					loc = i
+				}
+			}
+
+			if loc == -1 {
+				fmt.Println("Item isn't in stock")
+			} else {
+				inventory = append(inventory[:loc], inventory[loc+1:]...)
+			}
+
 			break
 		case "a":
 			var newName string
@@ -48,6 +68,7 @@ func main() {
 		fmt.Println("Welcome to the store!")
 		fmt.Println("Options:")
 		fmt.Println("(i)nventory")
+		fmt.Println("(b)uy item")
 		fmt.Println("(a)dd item")
 		fmt.Println("(q)uit")
 		fmt.Scanln(&choice)
