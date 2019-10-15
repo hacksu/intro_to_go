@@ -1,4 +1,6 @@
 # intro_to_go
+![Go](https://golang.org/lib/godoc/images/go-logo-blue.svg)
+
 The aim of this lesson is to cover the basics of the Go programming language
 
 Some important things to know about Go:
@@ -97,3 +99,67 @@ func main() {
 ```
 
 Using structs, we can begin to build a more complex application
+
+## Creating the store
+
+We're going to start building our store application
+
+```go
+func main() {
+	brick := product{name: "brick", cost: 10}
+	corn := product{name: "corn", cost: 6}
+	gamecube := product{name: "gamecube", cost: 100}
+
+	inventory := []product{brick, corn, gamecube}
+
+	fmt.Println("Welcome to the store!")
+	fmt.Println("Options:")
+	fmt.Println("(i)nventory")
+	fmt.Println("(a)dd item")
+	fmt.Println("(q)uit")
+
+	var choice string
+	fmt.Scanln(&choice)
+
+	for choice != "q" {
+		switch choice {
+		case "i":
+			for _, p := range inventory {
+				fmt.Println("name:", p.name)
+				fmt.Println("cost:", p.cost)
+				fmt.Println()
+			}
+			break
+		case "a":
+			var newName string
+			fmt.Print("Enter a product name: ")
+			fmt.Scanln(&newName)
+
+			var newCost int
+			fmt.Print("Enter a cost: ")
+			fmt.Scanf("%d", &newCost)
+
+			inventory = append(inventory, product{name: newName, cost: newCost})
+			break
+		}
+
+		fmt.Println("Welcome to the store!")
+		fmt.Println("Options:")
+		fmt.Println("(i)nventory")
+		fmt.Println("(a)dd item")
+		fmt.Println("(q)uit")
+		fmt.Scanln(&choice)
+	}
+}
+```
+
+The completed code can also be found in the `main.go` file in this repository
+
+## Further reading
+
+If you are interested in learning more about Go, I would recommend checking out these resources:
+* [A Tour of Go](https://tour.golang.org)
+* [Go by Example](https://gobyexample.com/)
+
+Another great resource in the official docs for when you're more familiar with the language:
+* [Effective Go](https://golang.org/doc/effective_go.html)
