@@ -5,8 +5,8 @@ Some important things to know about Go:
 * It was designed at Google by Robert Griesemer, Rob Pike, and Ken Thompson
 * Syntactically similar to C
 * It is not exactly an object oriented language
-    * No classes, but there are structures (types)
-    * You can define methods for types
+    * No classes, but there are structures
+    * You can define methods for these structures
     * Still similar to OOP
 * [How to write Go code](https://golang.org/doc/code.html)
     * The `go` tool requires you to organize your code in a specific way
@@ -18,7 +18,7 @@ First, head to [the official Go website](https://golang.org/) and download the l
 
 I would recommend using VS Code with the Go extension for development. That is what we'll be using in this lesson.
 * We will compile and run Go in the command line
-* There is a Go IDE, GoLand, as well if you are interested (but we won't be really covering that)
+* There is a Go IDE, GoLand by JetBrains, as well if you are interested (but we won't be really covering that)
 
 ## Your first Go program
 
@@ -43,4 +43,57 @@ func main() {
 }
 ```
 
-Congrats, you've written your first go program!
+To run this, type `go run main.go` into the command line
+
+Congrats, you've written your first Go program!
+
+## Getting some input
+
+An important part of this application is reading in user input, so we'll learn about that next
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	fmt.Println("What is your name?")
+
+	var name string
+	fmt.Scanln(&name)
+
+	fmt.Println("Hello,", name)
+}
+```
+
+Again, type `go run main.go` into the command line to run this
+
+## Adding some structures
+
+Now that basic I/O has been covered, let's move on to structures
+
+Here's a basic structure that we're going to be using:
+
+```go
+type product struct {
+    name string
+    cost int
+}
+```
+
+Now we can create a new product:
+
+```go
+func main() {
+	p := product{
+		name: "Brick",
+		cost: 10,
+	}
+
+	fmt.Println(p.name, "costs $", p.cost)
+}
+```
+
+Using structs, we can begin to build a more complex application
